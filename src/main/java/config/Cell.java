@@ -2,10 +2,13 @@ package config;
 
 // La classe Cell est déclarée comme un enregistrement (record) qui est une nouveauté de Java 14.
 
+// tutur : ici essentiellement on a la liste des cellules :  le nom donne la forme et le content donne ce qui se trouve dedans (soit un
+// point, soit un energizer (le super boost), soit du vide)
+
 public record Cell(boolean northWall, boolean eastWall, boolean southWall, boolean westWall, Cell.Content initialContent) {
 
 
-    public enum Content { NOTHING, DOT, ENERGIZER}
+    public enum Content { NOTHING, DOT, ENERGIZER }
 
     /** TO DO : Modification avec une suele méthode de création 'create" qui prend comme paramètres les valeurs des murs dans chaque direction/
      * ainsi que le contenu initial de la cellule. Les autres méthodes de création sont supprimées.
@@ -14,7 +17,8 @@ public record Cell(boolean northWall, boolean eastWall, boolean southWall, boole
 
     // open cells
     public static Cell open(Content c) { return new Cell(false, false, false, false, c); }
-    public static Cell closed(Content c) { return new Cell(true, true, false, false, c); }
+    // --------- tutur : PROBLEME : la cellule closed devrait être true true true true : A CONFIRMER LES POTES ---------
+    public static Cell closed(Content c) { return new Cell(true, true, true, true, c); }
     // straight pipes
     public static Cell hPipe(Content c) { return new Cell(true, false, true, false, c); }
     public static Cell vPipe(Content c) { return new Cell(false, true, false, true, c); }

@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import config.MazeConfig;
 import model.MazeState;
 
+import java.io.IOException;
+
 public class App extends Application {
     @Override
     /**
@@ -26,7 +28,7 @@ public class App extends Application {
      *                     (voir https://docs.oracle.com/javase/8/javafx/api/javafx/scene/layout/Pane.html)
      *                     pour la documentation de la classe Pane)
      */
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         // Pane est un conteneur qui peut contenir des éléments graphiques
         var root = new Pane();
         // Scene est un objet qui contient tous les éléments graphiques (ça correspond à la fenêtre qui sera affichée)
@@ -64,7 +66,7 @@ public class App extends Application {
         gameScene.setOnKeyPressed(pacmanController::keyPressedHandler);
         gameScene.setOnKeyReleased(pacmanController::keyReleasedHandler);
 
-        var maze = new MazeState(MazeConfig.makeExample1());
+        var maze = new MazeState(MazeConfig.makeExampleTxt());
         var gameView = new GameView(maze, root, 100.0);
 
         /**
