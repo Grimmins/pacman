@@ -8,6 +8,9 @@ package gui;
 
 import model.Direction;
 import model.PacMan;
+import model.MazeState;
+import config.MazeConfig;
+
 
 import javafx.scene.input.KeyEvent;
 

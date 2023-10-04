@@ -18,6 +18,7 @@ public enum Ghost implements Critter {
 
     private RealCoordinates pos;
     private Direction direction = Direction.NONE;
+    private Direction nextDirection = Direction.NONE;
     @Override
     public RealCoordinates getPos() {
         return pos;
@@ -41,6 +42,16 @@ public enum Ghost implements Critter {
     @Override
     public double getSpeed() {
         return 0;
+    }
+
+    public boolean imPacman(){
+        return false;
+    }
+    public Direction getNextDirection(){
+        return this.nextDirection;
+    }
+    public void setNextDirection(Direction nextDirection){
+        this.nextDirection = nextDirection;
     }
 
 }

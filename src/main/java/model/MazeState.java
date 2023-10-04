@@ -33,6 +33,7 @@ public final class MazeState {
     private final List<Critter> critters;
     private int score;
 
+
     private final Map<Critter, RealCoordinates> initialPos;
     private int lives = 3;
 
@@ -62,6 +63,15 @@ public final class MazeState {
 
     public int getHeight() {
         return height;
+    }
+    public boolean wall(Direction direction, config.Cell cellule){
+        switch (direction){
+            case NORTH  : return cellule.northWall();
+            case SOUTH  : return cellule.southWall();
+            case EAST   : return cellule.eastWall();
+            case WEST   : return cellule.westWall();
+            default : return false;
+        }
     }
 
     public void update(long deltaTns) {
@@ -93,29 +103,73 @@ public final class MazeState {
                 switch (critter.getDirection()) {
                     case NORTH -> {
                         for (var n: curNeighbours) if (config.getCell(n).northWall()) {
-                            nextPos = curPos.floorY();
-                            critter.setDirection(Direction.NONE);
+                            if (critter.imPacman()){
+                                if(critter.getNextDirection() == Direction.NONE){
+                                    critter.setNextDirection(Direction.NORTH);
+                                }else{
+                                    if (!wall(critter.getNextDirection(),config.getCell(n))){
+                                        critter.setDirection(critter.getNextDirection());
+                                        critter.setNextDirection(Direction.NONE);
+                                    }
+                                }
+                            }else {
+                                nextPos = curPos.floorY();
+                                critter.setDirection(Direction.NONE);
+                            }
                             break;
                         }
                     }
                     case EAST -> {
                         for (var n: curNeighbours) if (config.getCell(n).eastWall()) {
-                            nextPos = curPos.ceilX();
-                            critter.setDirection(Direction.NONE);
+                            if (critter.imPacman()){
+                                if(critter.getNextDirection() == Direction.NONE){
+                                    critter.setNextDirection(Direction.EAST);
+                                }else{
+                                    if (!wall(critter.getNextDirection(),config.getCell(n))){
+                                        critter.setDirection(critter.getNextDirection());
+                                        critter.setNextDirection(Direction.NONE);
+                                    }
+                                }
+                            }else {
+                                nextPos = curPos.ceilX();
+                                critter.setDirection(Direction.NONE);
+                            }
                             break;
                         }
                     }
                     case SOUTH -> {
                         for (var n: curNeighbours) if (config.getCell(n).southWall()) {
-                            nextPos = curPos.ceilY();
-                            critter.setDirection(Direction.NONE);
+                            if (critter.imPacman()){
+                                if(critter.getNextDirection() == Direction.NONE){
+                                    critter.setNextDirection(Direction.SOUTH);
+                                }else{
+                                    if (!wall(critter.getNextDirection(),config.getCell(n))){
+                                        critter.setDirection(critter.getNextDirection());
+                                        critter.setNextDirection(Direction.NONE);
+                                    }
+                                }
+                            }else {
+                                nextPos = curPos.ceilY();
+                                critter.setDirection(Direction.NONE);
+                            }
                             break;
                         }
                     }
                     case WEST -> {
                         for (var n: curNeighbours) if (config.getCell(n).westWall()) {
-                            nextPos = curPos.floorX();
-                            critter.setDirection(Direction.NONE);
+                            if (critter.imPacman()){
+                                if(critter.getNextDirection() == Direction.NONE){
+                                    critter.setNextDirection(Direction.WEST);
+                                }else{
+                                    if (!wall(critter.getNextDirection(),config.getCell(n))){
+                                        critter.setDirection(critter.getNextDirection());
+                                        critter.setNextDirection(Direction.NONE);
+                                    }
+                                }
+                            }else {
+                                nextPos = curPos.floorX();
+                                critter.setDirection(Direction.NONE);
+                            }
                             break;
                         }
                     }

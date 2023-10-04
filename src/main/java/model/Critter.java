@@ -13,6 +13,11 @@ public sealed interface Critter permits Ghost, PacMan {
     RealCoordinates getPos();
 
     Direction getDirection();
+    void setNextDirection(Direction direction);
+    Direction getNextDirection();
+    boolean imPacman();
+
+
 
     double getSpeed();
 

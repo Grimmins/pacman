@@ -12,6 +12,8 @@ import geometry.RealCoordinates;
  */
 public final class PacMan implements Critter {
     private Direction direction = Direction.NONE;
+
+    private Direction nextDirection = Direction.NONE;
     private RealCoordinates pos;
     private boolean energized;
 
@@ -39,6 +41,17 @@ public final class PacMan implements Critter {
     public void setDirection(Direction direction) {
         this.direction = direction;
     }
+
+    public Direction getNextDirection(){
+        return this.nextDirection;
+    }
+    public void setNextDirection(Direction nextDirection){
+        this.nextDirection = nextDirection;
+    }
+    public boolean imPacman(){
+        return true;
+    }
+
 
     @Override
     public void setPos(RealCoordinates pos) {
