@@ -19,7 +19,8 @@ import model.PacMan;
  */
 
 
-public final class CritterGraphicsFactory {
+public final class
+CritterGraphicsFactory {
     private final double scale;
 
     public CritterGraphicsFactory(double scale) {

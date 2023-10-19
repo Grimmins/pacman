@@ -21,6 +21,11 @@ public sealed interface Critter permits Ghost, PacMan {
      * @return the next position if there is no wall
      */
     default RealCoordinates nextPos(long deltaTNanoSeconds) {
+        if (this instanceof Ghost){
+            if (((Ghost) this).goToHome(PacMan.INSTANCE)){
+                return new RealCoordinates(0,0);
+            }
+        }
         return getPos().plus((switch (getDirection()) {
             case NONE -> RealCoordinates.ZERO;
             case NORTH -> RealCoordinates.NORTH_UNIT;

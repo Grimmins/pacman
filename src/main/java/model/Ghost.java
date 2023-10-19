@@ -18,6 +18,7 @@ public enum Ghost implements Critter {
 
     private RealCoordinates pos;
     private Direction direction = Direction.NONE;
+    private boolean alive = true;
     @Override
     public RealCoordinates getPos() {
         return pos;
@@ -42,5 +43,14 @@ public enum Ghost implements Critter {
     public double getSpeed() {
         return 0;
     }
+    public boolean goToHome(PacMan p){
+        RealCoordinates ghost = this.getPos();
+        if (ghost.x() >= p.getPos().x()-0.25 && ghost.x() <= p.getPos().x()+0.25 && ghost.y() >=p.getPos().y()-0.25 && ghost.y() <=p.getPos().y()+0.25 && p.isEnergized()){
+            this.alive = false;
+            return true;
+        }
+        return false;
+    }
 
 }
+
