@@ -59,18 +59,4 @@ public class CritterGraphicsFactoryTest{
         }    
     }
     }
-
-    /*@Test
-    public void updateTest(){
-        List<Ghost> critters = List.of(Ghost.CLYDE, Ghost.BLINKY, Ghost.INKY, Ghost.PINKY);
-        for(double i = 50; i <300;i+=0.5){
-            CritterGraphicsFactory facto = new CritterGraphicsFactory(i);
-            for (Ghost critter: critters){
-                critter.setDirection(Direction.NONE);
-                Pane gameRoot = new Pane();
-                gameRoot.getChildren().add(facto.makeGraphics(critter).getNode());
-            }
-        }
-    }*/
-
 }
