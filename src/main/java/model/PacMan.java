@@ -168,7 +168,7 @@ public final class PacMan implements Critter {
                         return new RealCoordinates(this.getPos().x(), Math.min(nextPos.y(), Math.ceil(this.getPos().y())));
                     } else {
                         if (nextPos.y() > config.getHeight() - TPINTERVAL) {
-                            nextPos = new RealCoordinates(this.getPos().x(),TPINTERVAL);
+                            nextPos = new RealCoordinates(this.getPos().x(),TPINTERVAL - 0.5);
                         }
                         return nextPos;
                     }
