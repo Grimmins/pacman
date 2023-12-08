@@ -243,6 +243,7 @@ public final class MazeState {
                   animationController.setHasntAlreadyWon(false);
                   animationController.win();
         }
+        animationController.defaultSiren();
     }
 
     public int getHighScore () {
