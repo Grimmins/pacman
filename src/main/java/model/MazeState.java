@@ -238,8 +238,7 @@ public final class MazeState {
 
                         timer.cancel();
                     }
-                  }, 3000);                
-                  if (level == 2) playerWin();
+                  }, 3000);
                   animationController.setHasntAlreadyWon(false);
                   animationController.win();
         }

@@ -19,10 +19,10 @@ public class PacmanController {
 
         switch (event.getCode()){
             case ESCAPE -> {
-                if(animationController.isPaused()) {
+                if(animationController.isPaused() && !animationController.isInUnstoppableAnimation()) {
                     animationController.stopPauseMenu();
                 }
-                else{
+                else if(!animationController.isInUnstoppableAnimation()){
                     animationController.startPauseMenu();
                 }
             }

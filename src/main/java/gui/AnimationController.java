@@ -55,9 +55,10 @@ public class AnimationController {
 
     private boolean hasntAlreadyWon = true; //Aide à gérer les transitions de niveau
     private AudioClip defaultSiren = new AudioClip(getClass().getResource("/audio/assassindelapolice.mp3").toExternalForm());
-    private AudioClip specialSiren = new AudioClip(getClass().getResource("/audio/assassindelapolice2.mp3").toExternalForm());
-    private boolean defaultSirenIsPlaying = false;
     private boolean specialSirenIsPlaying = false;
+    private boolean defaultSirenIsPlaying = false;
+    private AudioClip specialSiren = new AudioClip(getClass().getResource("/audio/assassindelapolice2.mp3").toExternalForm());
+
 
 
 
@@ -301,8 +302,6 @@ public class AnimationController {
         AudioClip main = new AudioClip(getClass().getResource("/audio/pacmanThemeOriginal.mp3").toExternalForm());
         main.play();
     }
-
-
     public void defaultSiren(){
         if(PacMan.INSTANCE.isEnergized()){
             if(defaultSirenIsPlaying){
@@ -323,5 +322,10 @@ public class AnimationController {
                 defaultSirenIsPlaying = true;
             }
         }
+    }
+
+    public static int getNextLevel(int x){
+        if(x == 3) return 1;
+        else return ++x;
     }
 }
