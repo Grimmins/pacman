@@ -27,6 +27,8 @@ import model.MazeState;
 import java.io.IOException;
 import java.sql.Time;
 import javafx.scene.media.AudioClip;
+import model.PacMan;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -52,10 +54,10 @@ public class AnimationController {
     private double AppScale;
 
     private boolean hasntAlreadyWon = true; //Aide à gérer les transitions de niveau
-    AudioClip defaultSiren = new AudioClip(getClass().getResource("/audio/assassindelapolice.mp3").toExternalForm());
-    private boolean energizedSirenIsPlaying = false;
-    AudioClip energizedSiren = new AudioClip(getClass().getResource("/audio/assassindelapolice2.mp3").toExternalForm());
-
+    private AudioClip defaultSiren = new AudioClip(getClass().getResource("/audio/assassindelapolice.mp3").toExternalForm());
+    private AudioClip specialSiren = new AudioClip(getClass().getResource("/audio/assassindelapolice2.mp3").toExternalForm());
+    private boolean defaultSirenIsPlaying = false;
+    private boolean specialSirenIsPlaying = false;
 
 
 
@@ -123,10 +125,6 @@ public class AnimationController {
     public void setHasntAlreadyWon(boolean hasntAlreadyWon) {
         this.hasntAlreadyWon = hasntAlreadyWon;
 
-    }
-
-    public void setEnergizedSirenIsPlaying(boolean energizedSirenIsPlaying) {
-        this.energizedSirenIsPlaying = energizedSirenIsPlaying;
     }
 
     public void blurGame(){
@@ -303,12 +301,27 @@ public class AnimationController {
         AudioClip main = new AudioClip(getClass().getResource("/audio/pacmanThemeOriginal.mp3").toExternalForm());
         main.play();
     }
-    /* C'est à chier pour l'instant
-    public void siren() {
-        if (energizedSirenIsPlaying) {
-            defaultSiren.stop();
+
+
+    public void defaultSiren(){
+        if(PacMan.INSTANCE.isEnergized()){
+            if(defaultSirenIsPlaying){
+                defaultSiren.stop();
+                defaultSirenIsPlaying = false;
+            }
+            if(!specialSirenIsPlaying){
+                specialSiren.play();
+                specialSirenIsPlaying = true;
+            }
         } else {
-            defaultSiren.play();
+            if(specialSirenIsPlaying){
+                specialSiren.stop();
+                specialSirenIsPlaying = false;
+            }
+            if(!defaultSirenIsPlaying){
+                defaultSiren.play();
+                defaultSirenIsPlaying = true;
+            }
         }
-    } */
+    }
 }
